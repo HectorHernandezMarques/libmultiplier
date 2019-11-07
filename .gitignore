@@ -1,3 +1,10 @@
+# CLion folder
+.idea
+
+# CMake likely folders
+cmake-build*
+cmake_build*
+
 # Prerequisites
 *.d
 

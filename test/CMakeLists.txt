@@ -7,7 +7,7 @@ add_executable(libmultiplier_test
 target_link_libraries(libmultiplier_test
         PRIVATE
             libmultiplier_include_libmultiplier
-            libmultiplier_lib
+            libmultiplier_static
             gtest_main
         )
 

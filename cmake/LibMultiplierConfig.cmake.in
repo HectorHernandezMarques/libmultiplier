@@ -1,0 +1,10 @@
+get_filename_component(LibMultiplier_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+
+include(CMakeFindDependencyMacro)
+find_dependencies(LibAdder REQUIRED)
+
+if(NOT TARGET LibMultiplier::libmultiplier)
+    include("${LibMultiplier_CMAKE_DIR}/LibMultiplierTargets.cmake")
+endif()
+
+set(LibMultiplier_LIBRARIES LibMultiplier::libmultiplier)

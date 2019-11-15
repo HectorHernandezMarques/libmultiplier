@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14.7)
 set(CMAKE_CXX_STANDARD 17)
 
 project(libmultiplier
-        VERSION 1.0.1
+        VERSION 1.0.2
         LANGUAGES CXX
         )
 
@@ -23,8 +23,8 @@ target_link_libraries(libmultiplier_static
 
 set_target_properties(libmultiplier_static PROPERTIES
         PREFIX ""
-        OUTPUT_NAME "libmultiplier_static_$<CONFIG>"
-        OUTPUT_NAME_RELEASE "libmultiplier_static"
+        OUTPUT_NAME libmultiplier_static_$<CONFIG>
+        OUTPUT_NAME_RELEASE libmultiplier_static
         SUFFIX ${CMAKE_STATIC_LIBRARY_SUFFIX}.${PROJECT_VERSION}
         )
 
@@ -40,8 +40,8 @@ target_link_libraries(libmultiplier
 
 set_target_properties(libmultiplier PROPERTIES
         PREFIX ""
-        OUTPUT_NAME "libmultiplier_$<CONFIG>"
-        OUTPUT_NAME_RELEASE "libmultiplier"
+        OUTPUT_NAME libmultiplier_$<CONFIG>
+        OUTPUT_NAME_RELEASE libmultiplier
         SUFFIX ${CMAKE_SHARED_LIBRARY_SUFFIX}.${PROJECT_VERSION}
         )
 

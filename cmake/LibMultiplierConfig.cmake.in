@@ -1,7 +1,7 @@
 include(CMakeFindDependencyMacro)
 find_dependencies(LibAdder REQUIRED)
 
-include("${CMAKE_CURRENT_LIST_DIR}/LibMultiplierTargets.cmake")
+include(${CMAKE_CURRENT_LIST_DIR}/LibMultiplierTargets.cmake)
 
 set(LibMultiplier_LIBRARIES
         LibMultiplier::libmultiplier
@@ -18,7 +18,7 @@ message(STATUS
 foreach (LibMultiplier_LIBRARY IN LISTS LibMultiplier_LIBRARIES)
     if (TARGET ${LibMultiplier_LIBRARY})
         message(STATUS
-                \t\t${LibMultiplier_LIBRARY}
+                "\t\t${LibMultiplier_LIBRARY}"
                 )
     else ()
         message(SEND_ERROR

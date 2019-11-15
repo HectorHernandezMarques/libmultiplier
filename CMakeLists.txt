@@ -1,10 +1,12 @@
 cmake_minimum_required(VERSION 3.14.7)
+set(CMAKE_CXX_STANDARD 17)
 
 project(libmultiplier
-        VERSION 1.0.0
+        VERSION 1.0.1
         LANGUAGES CXX
         )
 
+include(cmake/AddSimpleLibrary.cmake)
 add_subdirectory(include)
 add_subdirectory(lib)
 add_subdirectory(test)
@@ -20,9 +22,10 @@ target_link_libraries(libmultiplier_static
         )
 
 set_target_properties(libmultiplier_static PROPERTIES
-        POSITION_INDEPENDENT_CODE ON
+        PREFIX ""
         OUTPUT_NAME "libmultiplier_static_$<CONFIG>"
         OUTPUT_NAME_RELEASE "libmultiplier_static"
+        SUFFIX ${CMAKE_STATIC_LIBRARY_SUFFIX}.${PROJECT_VERSION}
         )
 
 # Shared library
@@ -36,13 +39,17 @@ target_link_libraries(libmultiplier
         )
 
 set_target_properties(libmultiplier PROPERTIES
-        POSITION_INDEPENDENT_CODE ON
+        PREFIX ""
         OUTPUT_NAME "libmultiplier_$<CONFIG>"
         OUTPUT_NAME_RELEASE "libmultiplier"
+        SUFFIX ${CMAKE_SHARED_LIBRARY_SUFFIX}.${PROJECT_VERSION}
         )
 
+# Installation
+set(LIBADDER_CMAKE_INSTALL_DIR lib/cmake/LibMultiplier-${PROJECT_VERSION})
+
 install(TARGETS
-            #libmultiplier
+            libmultiplier
             libmultiplier_static
             libmultiplier_lib
             libmultiplier_include_libmultiplier
@@ -58,7 +65,7 @@ install(EXPORT libmultiplier_export
         NAMESPACE
             LibMultiplier::
         DESTINATION
-            cmake/LibMultiplier
+            ${LIBADDER_CMAKE_INSTALL_DIR}
         )
 
 include(CMakePackageConfigHelpers)
@@ -69,11 +76,11 @@ write_basic_package_version_file(${CMAKE_CURRENT_BINARY_DIR}/LibMultiplierConfig
 
 configure_package_config_file(cmake/LibMultiplierConfig.cmake.in
         ${CMAKE_CURRENT_BINARY_DIR}/LibMultiplierConfig.cmake
-        INSTALL_DESTINATION cmake/LibMultiplier
+        INSTALL_DESTINATION ${LIBADDER_CMAKE_INSTALL_DIR}
         )
 
 install(FILES
         ${CMAKE_CURRENT_BINARY_DIR}/LibMultiplierConfig.cmake
         ${CMAKE_CURRENT_BINARY_DIR}/LibMultiplierConfigVersion.cmake
-        DESTINATION cmake/LibMultiplier
+        DESTINATION ${LIBADDER_CMAKE_INSTALL_DIR}
         )

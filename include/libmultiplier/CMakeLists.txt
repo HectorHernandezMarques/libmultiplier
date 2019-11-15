@@ -1,13 +1,7 @@
-add_library(libmultiplier_include_libmultiplier INTERFACE)
-
-target_include_directories(libmultiplier_include_libmultiplier
-        INTERFACE
-            $<INSTALL_INTERFACE:include>
-            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-        )
+add_simple_library(libmultiplier_include_libmultiplier INTERFACE)
 
 install(DIRECTORY .
-        DESTINATION include
+        DESTINATION include/${PROJECT_NAME}/${PROJECT_VERSION}
         FILES_MATCHING
         PATTERN "*.h"
         )

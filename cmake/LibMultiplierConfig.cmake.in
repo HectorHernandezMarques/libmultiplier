@@ -1,10 +1,28 @@
-get_filename_component(LibMultiplier_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
-
 include(CMakeFindDependencyMacro)
 find_dependencies(LibAdder REQUIRED)
 
-if(NOT TARGET LibMultiplier::libmultiplier)
-    include("${LibMultiplier_CMAKE_DIR}/LibMultiplierTargets.cmake")
-endif()
+include("${CMAKE_CURRENT_LIST_DIR}/LibMultiplierTargets.cmake")
 
-set(LibMultiplier_LIBRARIES LibMultiplier::libmultiplier)
+set(LibMultiplier_LIBRARIES
+        LibMultiplier::libmultiplier
+        LibMultiplier::libmultiplier_static
+        )
+
+message(STATUS
+        "LibMultiplier successfully imported."
+        )
+message(STATUS
+        "\${LibMultiplier_LIBRARIES} =>"
+        )
+
+foreach (LibMultiplier_LIBRARY IN LISTS LibMultiplier_LIBRARIES)
+    if (TARGET ${LibMultiplier_LIBRARY})
+        message(STATUS
+                \t\t${LibMultiplier_LIBRARY}
+                )
+    else ()
+        message(SEND_ERROR
+                "\t\t${LibMultiplier_LIBRARY} not found"
+                )
+    endif ()
+endforeach ()

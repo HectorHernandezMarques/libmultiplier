@@ -1,5 +1,9 @@
+message(STATUS
+        "Importing LibMultiplier."
+        )
+
 include(CMakeFindDependencyMacro)
-find_dependencies(LibAdder REQUIRED)
+find_dependencies(LibAdder 2.0.8 EXACT REQUIRED)
 
 include(${CMAKE_CURRENT_LIST_DIR}/LibMultiplierTargets.cmake)
 
@@ -8,9 +12,6 @@ set(LibMultiplier_LIBRARIES
         LibMultiplier::libmultiplier_static
         )
 
-message(STATUS
-        "LibMultiplier successfully imported."
-        )
 message(STATUS
         "\${LibMultiplier_LIBRARIES} =>"
         )
@@ -26,3 +27,7 @@ foreach (LibMultiplier_LIBRARY IN LISTS LibMultiplier_LIBRARIES)
                 )
     endif ()
 endforeach ()
+
+message(STATUS
+        "LibMultiplier successfully imported."
+        )

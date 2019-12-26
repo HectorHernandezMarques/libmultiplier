@@ -1,4 +1,4 @@
-find_package(LibAdder 2.0.7 EXACT REQUIRED)
+find_package(LibAdder 2.0.8 EXACT REQUIRED)
 
 add_simple_library(libmultiplier_lib OBJECT
         Multiplier.cpp

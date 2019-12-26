@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14.7)
 set(CMAKE_CXX_STANDARD 17)
 
 project(libmultiplier
-        VERSION 1.0.2
+        VERSION 1.0.3
         LANGUAGES CXX
         )
 
@@ -46,7 +46,7 @@ set_target_properties(libmultiplier PROPERTIES
         )
 
 # Installation
-set(LIBADDER_CMAKE_INSTALL_DIR lib/cmake/LibMultiplier-${PROJECT_VERSION})
+set(LIBMULTIPLIER_CMAKE_INSTALL_DIR lib/cmake/LibMultiplier-${PROJECT_VERSION})
 
 install(TARGETS
             libmultiplier
@@ -65,7 +65,7 @@ install(EXPORT libmultiplier_export
         NAMESPACE
             LibMultiplier::
         DESTINATION
-            ${LIBADDER_CMAKE_INSTALL_DIR}
+            ${LIBMULTIPLIER_CMAKE_INSTALL_DIR}
         )
 
 include(CMakePackageConfigHelpers)
@@ -76,11 +76,11 @@ write_basic_package_version_file(${CMAKE_CURRENT_BINARY_DIR}/LibMultiplierConfig
 
 configure_package_config_file(cmake/LibMultiplierConfig.cmake.in
         ${CMAKE_CURRENT_BINARY_DIR}/LibMultiplierConfig.cmake
-        INSTALL_DESTINATION ${LIBADDER_CMAKE_INSTALL_DIR}
+        INSTALL_DESTINATION ${LIBMULTIPLIER_CMAKE_INSTALL_DIR}
         )
 
 install(FILES
         ${CMAKE_CURRENT_BINARY_DIR}/LibMultiplierConfig.cmake
         ${CMAKE_CURRENT_BINARY_DIR}/LibMultiplierConfigVersion.cmake
-        DESTINATION ${LIBADDER_CMAKE_INSTALL_DIR}
+        DESTINATION ${LIBMULTIPLIER_CMAKE_INSTALL_DIR}
         )
